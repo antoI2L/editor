@@ -1,7 +1,5 @@
 package org.ulco;
 
-import java.util.Vector;
-
 public class Group extends GraphicsObjects {
 
     private Group group;
@@ -12,7 +10,7 @@ public class Group extends GraphicsObjects {
         m_ID = ++ID.ID;
     }
 
-    public Group(String json) {
+    public void init(String json) {
         group = null;
 
         String str = json.replaceAll("\\s+", "");

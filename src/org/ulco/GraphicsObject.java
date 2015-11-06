@@ -5,6 +5,8 @@ abstract public class GraphicsObject {
         m_ID = ++ID.ID;
     }
 
+    abstract public void init(String json);
+
     abstract public GraphicsObject copy();
 
     public int getID() {

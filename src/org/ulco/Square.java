@@ -6,8 +6,13 @@ public class Square extends GraphicsObject {
         this.m_length = length;
     }
 
-    public Square(String json) {
-        String str = json.replaceAll("\\s+","");
+    public Square() {
+        this.m_origin = new Point(0, 0);
+        this.m_length = 0.0;
+    }
+
+    public void init(String json) {
+        String str = json.replaceAll("\\s+", "");
         int centerIndex = str.indexOf("center");
         int lengthIndex = str.indexOf("length");
         int endIndex = str.lastIndexOf("}");
@@ -20,7 +25,9 @@ public class Square extends GraphicsObject {
         return new Square(m_origin.copy(), m_length);
     }
 
-    public Point getOrigin() { return m_origin; }
+    public Point getOrigin() {
+        return m_origin;
+    }
 
     public boolean isClosed(Point pt, double distance) {
         Point center = new Point(m_origin.getX() + m_length / 2, m_origin.getY() + m_length / 2);
@@ -29,7 +36,9 @@ public class Square extends GraphicsObject {
                 ((center.getY() - pt.getY()) * (center.getY() - pt.getY()))) <= distance;
     }
 
-    void move(Point delta) { m_origin.move(delta); }
+    void move(Point delta) {
+        m_origin.move(delta);
+    }
 
     public String toJson() {
         return "{ type: square, center: " + m_origin.toJson() + ", length: " + this.m_length + " }";
@@ -39,6 +48,6 @@ public class Square extends GraphicsObject {
         return "square[" + m_origin.toString() + "," + m_length + "]";
     }
 
-    private final Point m_origin;
-    private final double m_length;
+    private Point m_origin;
+    private double m_length;
 }

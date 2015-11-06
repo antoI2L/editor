@@ -7,7 +7,11 @@ public class Point {
     }
 
     public Point(String json) {
-        String str = json.replaceAll("\\s+","");
+        init(json);
+    }
+
+    public void init(String json) {
+        String str = json.replaceAll("\\s+", "");
         int xIndex = str.indexOf("x");
         int separatorIndex = str.indexOf(",", xIndex + 2);
         int yIndex = str.lastIndexOf("y");
@@ -29,8 +33,7 @@ public class Point {
         return m_y;
     }
 
-    void move(Point delta)
-    {
+    void move(Point delta) {
         m_x += delta.getX();
         m_y += delta.getY();
     }
