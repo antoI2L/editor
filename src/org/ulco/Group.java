@@ -2,12 +2,12 @@ package org.ulco;
 
 public class Group extends GraphicsObjects {
 
-    private Group group;
-    private int m_ID;
+    protected Group group;
+    protected int m_ID;
 
     public Group() {
         group = null;
-        m_ID = ++ID.ID;
+        m_ID = ID.instance().generate();
     }
 
     public void init(String json) {
@@ -53,7 +53,7 @@ public class Group extends GraphicsObjects {
         }
     }
 
-    private int searchSeparator(String str) {
+    protected int searchSeparator(String str) {
         int index = 0;
         int level = 0;
         boolean found = false;
@@ -78,7 +78,7 @@ public class Group extends GraphicsObjects {
         }
     }
 
-    private void parseGroups(String groupsStr) {
+    protected void parseGroups(String groupsStr) {
         while (!groupsStr.isEmpty()) {
             int separatorIndex = searchSeparator(groupsStr);
             String groupStr;
@@ -103,7 +103,7 @@ public class Group extends GraphicsObjects {
         }
     }
 
-    private void parseObjects(String objectsStr) {
+    protected void parseObjects(String objectsStr) {
         while (!objectsStr.isEmpty()) {
             int separatorIndex = searchSeparator(objectsStr);
             String objectStr;
