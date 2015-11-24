@@ -16,6 +16,7 @@ public class Document {
         parseLayers(str.substring(layersIndex + 8, endIndex));
     }
 
+    /*
     public Document(Point origin, int line, int column, double length) {
         m_layers = new Vector<Layer>();
 
@@ -36,7 +37,7 @@ public class Document {
         for (int index = 0; index < number; ++index) {
             layer.add(new Circle(center, radius + index * delta));
         }
-    }
+    }*/
 
     public Layer createLayer() {
         Layer layer = new Layer();
