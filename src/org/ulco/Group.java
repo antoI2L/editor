@@ -57,7 +57,7 @@ public class Group extends GraphicsObjects {
         }
     }
 
-    protected int searchSeparator(String str) {
+    /*protected int searchSeparator(String str) {
         int index = 0;
         int level = 0;
         boolean found = false;
@@ -80,11 +80,11 @@ public class Group extends GraphicsObjects {
         } else {
             return -1;
         }
-    }
+    }*/
 
     protected void parseGroups(String groupsStr) {
         while (!groupsStr.isEmpty()) {
-            int separatorIndex = searchSeparator(groupsStr);
+            int separatorIndex = Util.searchSeparator(groupsStr);
             String groupStr;
 
             if (separatorIndex == -1) {
@@ -109,7 +109,7 @@ public class Group extends GraphicsObjects {
 
     protected void parseObjects(String objectsStr) {
         while (!objectsStr.isEmpty()) {
-            int separatorIndex = searchSeparator(objectsStr);
+            int separatorIndex = Util.searchSeparator(objectsStr);
             String objectStr;
 
             if (separatorIndex == -1) {
@@ -134,8 +134,10 @@ public class Group extends GraphicsObjects {
         return super.size();
     }
 
-    public String toJson() {
-        String str = "{ type: group, objects : { ";
+
+    public String stringify(String debut,String milieu, String fin){
+
+        String str = debut;
 
         for (int i = 0; i < super.size(); ++i) {
             GraphicsObject element = this.elementAt(i);
@@ -145,32 +147,21 @@ public class Group extends GraphicsObjects {
                 str += ", ";
             }
         }
-        str += " }, groups : { ";
+        str += milieu;
 
         if (null != group) {
             str += group.toJson();
         }
 
-        return str + " } }";
+        return str + fin;
+    }
+
+
+    public String toJson() {
+        return stringify( "{ type: group, objects : { " ," }, groups : { "," } }");
     }
 
     public String toString() {
-        String str = "group[[";
-
-        for (int i = 0; i < super.size(); ++i) {
-            GraphicsObject element = this.elementAt(i);
-
-            str += element.toString();
-            if (i < super.size() - 1) {
-                str += ", ";
-            }
-        }
-        str += "],[";
-
-        if (null != group) {
-            str += group.toString();
-        }
-
-        return str + "]]";
+        return stringify("group[[","],[","]]");
     }
 }
