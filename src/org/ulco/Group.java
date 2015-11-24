@@ -22,6 +22,10 @@ public class Group extends GraphicsObjects {
         parseGroups(str.substring(groupsIndex + 8, endIndex - 1));
     }
 
+    public Group getGroup() {
+        return group;
+    }
+
     public void add(Group group) {
         if (null == this.group) {
             this.group = group;

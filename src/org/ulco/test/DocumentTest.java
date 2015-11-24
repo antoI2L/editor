@@ -12,8 +12,10 @@ public class DocumentTest extends TestCase {
 
         layer.add(c);
 
-        assertTrue(document.select(new Point(1,1), 8).size() == 1);
-        assertTrue(document.select(new Point(1,1), 8).firstElement().getID() == c.getID());
+       // assertTrue(document.select(new Point(1,1), 8).size() == 1);
+        // assertTrue(document.select(new Point(1,1), 8).firstElement().getID() == c.getID());
+        assertTrue(Util.select(document, new Point(1, 1), 8).size() == 1);
+        assertTrue(Util.select(document, new Point(1, 1), 8).firstElement().getID() == c.getID());
     }
 
     public void testSelect2() throws Exception {
@@ -25,7 +27,26 @@ public class DocumentTest extends TestCase {
         layer.add(c);
         layer.add(s);
 
-        assertTrue(document.select(new Point(1,1), 8).size() == 2);
+        //assertTrue(document.select(new Point(1,1), 8).size() == 2);
+        assertTrue(Util.select(document, new Point(1, 1), 8).size() == 2);
+    }
+
+    public void testSelect3() throws Exception {
+        Document document = new Document();
+        Layer layer = document.createLayer();
+        Circle c = new Circle(new Point(2, 8), 10);
+        Circle c2 = new Circle(new Point(2, 8), 10);
+        Group g = new Group();
+        g.add(c);
+        layer.add(g);
+        layer.add(c2);
+
+        // assertTrue(document.select(new Point(1,1), 8).size() == 1);
+        // assertTrue(document.select(new Point(1,1), 8).firstElement().getID() == c.getID());
+        assertNotNull(layer.getGroup());
+        assertTrue(Util.select(document, new Point(1, 1), 8).size() == 2);
+        assertTrue(Util.select(document, new Point(1, 1), 8).firstElement().getID() == c2.getID());
+        assertTrue(Util.select(document, new Point(1, 1), 8).elementAt(1).getID() == c.getID());
     }
 
     public void testJSON() throws Exception {

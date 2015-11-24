@@ -21,6 +21,7 @@ public class Layer extends Group {
         return this.size();
     }
 
+    /*
     public GraphicsObjects select(Point pt, double distance) {
         GraphicsObjects list = new GraphicsObjects();
 
@@ -29,8 +30,10 @@ public class Layer extends Group {
                 list.add(object);
             }
         }
+
         return list;
     }
+    */
 
     public String toJson() {
         String str = "{ type: layer, objects : { ";
