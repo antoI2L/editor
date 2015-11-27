@@ -36,7 +36,7 @@ public class Rectangle extends GraphicsObject {
     public boolean isClosed(Point pt, double distance) {
         Point center = new Point(m_origin.getX() + m_width / 2, m_origin.getY() + m_height / 2);
 
-        return Util.isClosed(new Point(m_origin.getX() + m_width / 2, m_origin.getY() + m_height / 2),pt,distance);
+        return Util.isClosed(center,pt,distance);
     }
 
     void move(Point delta) {

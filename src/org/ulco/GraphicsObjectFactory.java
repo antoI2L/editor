@@ -7,11 +7,8 @@ import java.lang.reflect.Constructor;
  */
 public class GraphicsObjectFactory {
 
-    public final static String CIRCLE = "circle";
     public final static String GROUP = "group";
     public final static String LAYER = "layer";
-    public final static String RECTANGLE = "rectangle";
-    public final static String SQUARE = "square";
 
     public static GraphicsObject createGraphicsObject(String type, String json) {
 
